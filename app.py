@@ -7,7 +7,7 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
-from db import db
+# from db import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'  # sqlite can also be oracle mysql and others I guess.
@@ -15,9 +15,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # turns off the flask sqlac
 app.secret_key = 'Henry'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()    # this will create the data.db file - no need for create tables dot py.  it must see them in an import definition.
 
 jwt = JWT(app, authenticate, identity)  # creates /auth
 
